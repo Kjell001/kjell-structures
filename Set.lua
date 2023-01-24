@@ -14,9 +14,10 @@ function Set:assign(content, value)
    self.count = nil
 end
 
-function Set:contains(value)
+function Set:get(value)
    return self.values[value]
 end
+Set.contains = Set.get
 
 function Set:add(...)
    local hasValue = self:contains(...)
@@ -55,6 +56,10 @@ end
 -- Return iterator
 function Set:items()
    return next, self.values, nil
+end
+
+function Set:pairs()
+   return pairs(self.items)
 end
 
 -- Return hard copy of this set

@@ -4,7 +4,6 @@
 <dict>
 	<key>Buffer Order</key>
 	<array>
-		<string>Main</string>
 		<string>Set</string>
 		<string>CoordSet</string>
 		<string>PairwiseSet</string>
@@ -12,6 +11,9 @@
 		<string>Queue</string>
 		<string>Stack</string>
 		<string>History</string>
+		<string>vec</string>
+		<string>Polygon</string>
+		<string>Main</string>
 	</array>
 	<key>Dependencies</key>
 	<array>

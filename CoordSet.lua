@@ -30,23 +30,27 @@ function CoordSet:assign(content, coord)
    Set.assign(self, content, index)
 end
 
-function CoordSet:contains(coord)
+function CoordSet:get(coord)
    local index = self:coord2index(coord)
    return Set.contains(self, index)
 end
+CoordSet.contains = CoordSet.get
 
 function CoordSet:items()
    local index = next(self.values)
    return function()
       if index then
          local coord = self:index2coord(index)
+         local value = self.values[index]
          index = next(self.values, index)
-         return coord
+         return coord, value
       end
    end
 end
 
--- Translate allcoordinates in set by a vector
+CoordSet.pairs = CoordSet.items
+
+-- Translate all coordinates in set by a vector
 function CoordSet:translate(dir)
    local indexDir = dir.x * self.maxCoord + dir.y
    local newValues = {}
@@ -61,8 +65,8 @@ end
 
 function CoordSet.__tostring(a)
    local str = "CoordSet(" .. #a .. "): {"
-   for coord in a:items() do
-      str = str .. "\n  (" .. string.format("%6d; %6d",  coord.x, coord.y) .. "),"
+   for coord, content in a:items() do
+      str = str .. string.format("\n (%6d; %6d): %s",  coord.x, coord.y, content)
    end
    str = str .. "\n}"
    return str

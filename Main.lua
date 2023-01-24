@@ -151,4 +151,9 @@ function setup()
       not contains_x and contains_y,
       "WeakSet weakly referred value removal failed"
    )
+   
+   -- Polygon
+   poly = Polygon{vec2(1, 0), vec2(8, 1), vec2(7, 8), vec2(0, 7)}
+   assert(not poly:contains(vec2(0, 0)), "Polygon 'contains' failed")
+   assert(poly:contains(vec2(4, 4)), "Polygon 'contains' failed")
 end
